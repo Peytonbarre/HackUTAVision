@@ -1,2 +1,2 @@
-# Vision Processing for HackUTA StateFarm Challenge
+# StateFarm Challenge for Hack UTA
 Contributors: Peyton Barre, Kevin Mathew
