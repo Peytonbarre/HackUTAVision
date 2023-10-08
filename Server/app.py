@@ -1,7 +1,9 @@
 from flask import Flask, render_template, Response, jsonify
 import cv2
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app) #CORS is cool because it allows cross-origin requests
 
 video_stream = cv2.VideoCapture(0)
 
@@ -27,7 +29,3 @@ def get_frame():
     ret, jpeg = cv2.imencode('.jpg', frame)
 
     return jpeg.tobytes()
-
-
-if __name__ == '__main__':
-    app.run(host='127.0.0.1', debug=True,port="5000")
