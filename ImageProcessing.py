@@ -34,7 +34,6 @@ def modifyImg(img, detections, threshold = 0.5):
             # Class id 10 is Stoplight class id 12 is stopsign
             if class_id ==  12 or class_id == 10:
                 cv2.rectangle(img, (xmin, ymin), (xmax, ymax), (255, 0, 0), 2)
-                img = img[ymin:ymax, xmin:xmax]
 
 #Currently created as a direcory
 #TODO: Figure out to how stream these images from phone
@@ -45,14 +44,15 @@ files = load_files()
 modelPath = "Model\saved_model"
 model = load_model(modelPath)
 counter = 0
+
 for file in files:
     stopSignImageNoPrep = cv2.imread(file)
     stopSignImagePrepped = stopSignImageNoPrep #TODO Prep the image to fti 612x612px
 
     detections = stopSignDetection(model, stopSignImagePrepped)
     modifyImg(stopSignImageNoPrep, detections)
-    #smaller = cv2.resize(stopSignImageNoPrep,(512,512))
-    cv2.imshow("Stop sign detection", stopSignImageNoPrep)
+    smaller = cv2.resize(stopSignImageNoPrep,(512,512))
+    cv2.imshow("Stop sign detection", smaller)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
     #Honestly I have no clue what this does, just saw it online lol
